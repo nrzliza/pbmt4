@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>You Got Clowned!</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: "Arial", sans-serif;
+      background: linear-gradient(135deg, #a18cd1, #fbc2eb);
+      height: 100vh;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .container {
+      background: #fff8e1;
+      padding: 40px;
+      border-radius: 16px;
+      text-align: center;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+      max-width: 400px;
+      position: relative;
+      z-index: 2;
+    }
+
+    h1 {
+      color: #ff3d00;
+      margin: 20px 0;
+    }
+
+    .emoji {
+      font-size: 60px;
+    }
+
+    .emoji-small {
+      font-size: 24px;
+      margin: 10px 0;
+    }
+
+    p {
+      color: #333;
+    }
+
+    button {
+      background-color: #d500f9;
+      color: white;
+      border: none;
+      padding: 12px 20px;
+      border-radius: 25px;
+      cursor: pointer;
+      font-size: 16px;
+      margin-top: 20px;
+    }
+
+    #confetti-canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 1;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="emoji">🥶</div>
+     <!-- Clown GIF -->
+  <img src="https://media.giphy.com/media/l2ZDN6z07Z5vNInte/giphy.gif" 
+    alt="Clown GIF" style="width: 100%; 
+    order-radius: 12px; margin: 20px 0;" />
+
+    <h1>OH NO! YOU'VE BEEN PHISHED!</h1>
+    <div class="emoji-small">😊</div>
+    <p>Hey, don't just tap on any link ok?.</p>
+    <button onclick="shootConfetti()">More Confetti!</button>
+  </div>
+
+  <canvas id="confetti-canvas"></canvas>
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+  <script>
+    function shootConfetti() {
+      const duration = 1 * 1000;
+      const end = Date.now() + duration;
+
+      (function frame() {
+        confetti({
+          particleCount: 7,
+          angle: 60,
+          spread: 55,
+          origin: { x: 0 },
+        });
+        confetti({
+          particleCount: 7,
+          angle: 120,
+          spread: 55,
+          origin: { x: 1 },
+        });
+
+        if (Date.now() < end) {
+          requestAnimationFrame(frame);
+        }
+      })();
+    }
+
+    // Trigger confetti when page loads
+    window.onload = shootConfetti;
+  </script>
+</body>
+</html>
